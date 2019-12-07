@@ -1,10 +1,10 @@
-原文链接：[A Week with `Elixir`](http://joearms.github.io/2013/05/31/a-week-with-elixir.html)，[_Joe Armstrong_](http://joearms.github.io/)，2013-05-31  
+原文链接：[A Week with `Elixir`](https://joearms.github.io/published/2013-05-31-a-week-with-elixir.html)，[_Joe Armstrong_](http://joearms.github.io/)，2013-05-31  
 基于开源中国社区的译文稿： [用`Elixir`的一周](https://www.oschina.net/translate/a-week-with-elixir)  
 译文发在[伯乐在线](http://blog.jobbole.com/)：[`Erlang`之父学习`Elixir`语言的一周](http://blog.jobbole.com/106663/)， 2016-10-17
 
 # `Erlang`之父学习`Elixir`语言的一周
 
-## 译序
+## 🍎 译序
 
 作为`Erlang`之父 _Joe Armstrong_，对`Erlang VM`上的新语言`Elixir`做了很精彩的评论和思考。『特定领域专家的专业直觉』、『编程语言设计的三定律』、『数据的版本化设计』、『管道运算符避免恶心代码』、『静态单赋值』、『`Elixir`的`sigil`引出的程序语言如何定义/解释字符串』、『函数定义和函数字面量在`Shell`的不一致性』等等主题的讨论，个性鲜明又幽默诙谐的行文风格，都能强烈感受到 _Joe Armstrong_ 深入广博的老黑客风范。
 
@@ -34,7 +34,7 @@ PS：为什么要整理和审校翻译 参见 [译跋](translation-postscript.md
 - [8. `defmacro`的引用和反引用](#8-defmacro%E7%9A%84%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%8D%E5%BC%95%E7%94%A8)
 - [9. 额外的符号](#9-%E9%A2%9D%E5%A4%96%E7%9A%84%E7%AC%A6%E5%8F%B7)
 - [10. 奇怪的空白符](#10-%E5%A5%87%E6%80%AA%E7%9A%84%E7%A9%BA%E7%99%BD%E7%AC%A6)
-- [11. 闭包行为完全正确 —— 哦耶](#11-%E9%97%AD%E5%8C%85%E8%A1%8C%E4%B8%BA%E5%AE%8C%E5%85%A8%E6%AD%A3%E7%A1%AE-%E2%80%94%E2%80%94-%E5%93%A6%E8%80%B6)
+- [11. 闭包行为完全正确 —— 哦耶](#11-%E9%97%AD%E5%8C%85%E8%A1%8C%E4%B8%BA%E5%AE%8C%E5%85%A8%E6%AD%A3%E7%A1%AE--%E5%93%A6%E8%80%B6)
 - [结束语](#%E7%BB%93%E6%9D%9F%E8%AF%AD)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -43,7 +43,7 @@ PS：为什么要整理和审校翻译 参见 [译跋](translation-postscript.md
 
 # 与`Elixir`相处的一周
 
-差不多一周前我开始看[`Elixir`](http://elixir-lang.org)，关于`Elixir`之前只有些模糊的了解，没打算花时间去看细节。
+差不多一周前我开始看[`Elixir`](http://elixir-lang.org)，关于`Elixir`之前只有些模糊的了解，没打算花时间去细看。
 
 但得知 _Dave Thomas_ 出版了[《_Programming Elixir_》](http://pragprog.com/book/elixir/programming-elixir)这本书的消息后，我的想法彻底变了。_Dave Thomas_ 帮我修订过那本`Erlang`的书并且作为`Ruby`的倡导者做得非常出色，所以 _Dave_ 要是对一样东西产生了兴趣，那说明这样东西的有趣性是毫无疑问的。
 
@@ -64,9 +64,9 @@ _Dave_ 对`Elixir`很感兴趣，在他的书里这样写道：
 
 但得知 _Dave_ 与`Elixir`『看对眼』时，我很想知道他为什么会这样。
 
-无独有偶，_Simon St. Laurent_ 也出了本`Elixir`的书。_Simon_ 的[《_Introducing Erlang_》](http://www.amazon.com/Introducing-Erlang-Simon-St-Laurent/dp/1449331769)一书表现不俗，我和他还邮件沟通过几次，所以有些事已经在酝酿了。而 _Pragmatic Press_ 和 _O'Reilly_ 出版社都在争着要出版`Elixir`，我知道在`Erlang VM`上的事已经在发生了，而我自己还没注意到。毫无疑问我Out了！
+无独有偶，_Simon St. Laurent_ 也出了本`Elixir`的书。_Simon_ 的[《_Introducing Erlang_》](http://www.amazon.com/Introducing-Erlang-Simon-St-Laurent/dp/1449331769)一书表现不俗，我和他还邮件沟通过几次，所以有些事已经在酝酿了。而 _Pragmatic Press_ 和 _O'Reilly_ 出版社都在争着要出版`Elixir`，我知道在`Erlang VM`上已经有事发生了，而我自己还没注意到。毫无疑问我Out了！
 
-我发封邮件给 _Dave_ 和 _Simon_，他们爽快地借给我了样书，现在可以开始阅读了……谢了二位……
+我发封邮件给 _Dave_ 和 _Simon_，他们爽快地借给了我样书，现在可以开始阅读了……谢了二位……
 
 # 上周我下载了`Elixir`然后开始学习
 
@@ -281,7 +281,7 @@ Process <- Message
 Process ! Message
 ```
 
-接下来的一周，我的脑子会变成浆糊，我的神经网络要被重新编程，这样我才能在『看到』`<-`时才能反应成 **_`!`_** —— 这点不是在说如何我思考，而是指要重编程我更深植在脊髓里无意识反应。发送操作符已经不在我大脑里，而是在我的脊髓里。我的大脑想着『发送一个消息给一个进程』并发送信号给我的手指，我的脊髓马上加上 **_`!`_**，接着大脑要 **回退删除** 这个字符改成 **_`<-`_**。
+接下来的一周，我的脑子会变成浆糊，我的神经网络要重新被编码，这样我在『看到』`<-`时才能反应成 **_`!`_** —— 这点不是在说我是如何在思考的，而是指要重编码更深植在脊髓里无意识反应。发送操作符已经不在我大脑里，而是在我的脊髓里。我的大脑想着『发送一个消息给一个进程』并发送信号给我的手指，我的脊髓马上加上 **_`!`_**，接着大脑要 **回退删除** 这个字符改成 **_`<-`_**。
 
 这是一个语法问题，而我们都喜欢对语法说长道短的。如果10分制的评级标准，10代表『非常非常烂』，1代表『好吧，我可以适应』的话，这个问题我给3分。
 
@@ -448,7 +448,7 @@ end
 > 作者上面说到的：
 > 1.『难怪有上千篇文章来解释它有多简单』；
 > 2. 用`Lisp`来快速解释引用和反引用，而不能直接去解释。
-> 
+>
 > 这是在用调侃的方式表达『真真儿难于解释』。
 
 # 9. 额外的符号
@@ -491,7 +491,7 @@ iex> lc x inlist [1, 2, 3], do : 2*x
 ```js
 js> a = 5;
 5
-js> f = function(x) { return x+a }; 
+js> f = function(x) { return x+a };
 function (x){return x+a}
 js> f(10)
 15

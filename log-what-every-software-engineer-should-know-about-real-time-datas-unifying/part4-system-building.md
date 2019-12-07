@@ -1,8 +1,14 @@
 第四部分：系统构建（`system building`）
 ===============================
 
-1. [分解单品方式而不是打包套餐方式（`Unbundling`）？](#分解单品方式而不是打包套餐方式unbundling)
-1. [日志在系统架构中的地位](#日志在系统架构中的地位)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+1. [分解单品方式而不是打包套餐方式（`Unbundling`）？](#%E5%88%86%E8%A7%A3%E5%8D%95%E5%93%81%E6%96%B9%E5%BC%8F%E8%80%8C%E4%B8%8D%E6%98%AF%E6%89%93%E5%8C%85%E5%A5%97%E9%A4%90%E6%96%B9%E5%BC%8Funbundling)
+1. [日志在系统架构中的地位](#%E6%97%A5%E5%BF%97%E5%9C%A8%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E4%B8%AD%E7%9A%84%E5%9C%B0%E4%BD%8D)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 最后我要讨论的是在线数据系统设计中日志的角色。
 
@@ -40,7 +46,7 @@
 
 第一种可能性是延续现状：各个分离的系统在往后很长的一段时间里基本保持不变。
 发生这种可能要么是因为建设分布式系统的困难很难克服，
-要么系统的专用化（`specialization`）能让各个系统的便得性（`convenience`）和能力（`power`）达到一个新的高度。
+要么系统的专用化（`specialization`）能让各个系统的便利性（`convenience`）和能力（`power`）达到一个新的高度。
 只要现状不变，为了能够使用数据，数据集成问题将仍会最核心事情之一。
 如果是这样，用于集成数据的外部日志将会非常的重要。
 
@@ -61,7 +67,7 @@
 - [`Lucene`](http://lucene.apache.org/)和[`LevelDB`](https://code.google.com/p/leveldb)等嵌入式类库做为索引。
 - [`Netty`](http://netty.io/)、[`Jetty`](http://www.eclipse.org/jetty) 和 更高层封装如[`Finagle`](http://twitter.github.io/finagle)、[`rest.li`](http://rest.li/)处理远程通信。
 - [`Avro`](http://avro.apache.org/)、[`Protocol Buffers`](https://code.google.com/p/protobuf)、[`Thrift`](http://thrift.apache.org/)和[`umpteen zillion`](https://github.com/eishay/jvm-serializers/wiki)等其它类库处理序列化。
-- [`Kafka`](http://kafka.apache.org/)和[`Bookeeper`](http://zookeeper.apache.org/bookkeeper)提供后端支持的日志。
+- [`Kafka`](http://kafka.apache.org/)和[`Bookeeper`](https://bookkeeper.apache.org/)提供后端支持的日志。
 
 如果你把上面这些叠成一堆，换个角度去看，它会有点像是乐高版（`lego version`）的分布式数据系统工程。
 你可以把这些零件拼装在一起，创建大量的可能的系统。
@@ -86,7 +92,7 @@
 这正是不同系统间的应该变化的部分，例如：一个全文搜索查询语句可能需要查询所有分区，
 而一个主键查询只需要查询负责这个主键数据的单个节点就可以了。
 
-<img src="images/system.png" width="130" hspace="10px" align="right" >
+<img src="images/system.png" width="20%" hspace="10px" align="right" >
 
 下面我们来看下系统是如何工作的。
 系统被分为两个逻辑部分：日志和服务层。日志按顺序捕获状态变化。

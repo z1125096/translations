@@ -4,7 +4,7 @@
 
 # `API`设计原则 - `Qt`官网的设计实践总结
 
-## :apple: 译序
+## 🍎 译序
 
 `Qt`的设计水准在业界很有口碑，一致、易于掌握和强大的`API`是`Qt`最著名的优点之一。此文既是`Qt`官网上的`API`设计指导准则，也是`Qt`在`API`设计上的实践总结。虽然`Qt`用的是`C++`，但其中设计原则和思考是具有普适性的（如果你对`C++`还不精通，可以忽略与`C++`强相关或是过于细节的部分，仍然可以学习或梳理关于`API`设计最有价值的内容）。整个篇幅中有很多示例，是关于`API`设计一篇难得的好文章。
 
@@ -532,8 +532,7 @@ void QGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem opti
 声明枚举类型时，需要记住在`C++`中枚举值在使用时不会带上类型（与`Java`、`C#`不同）。下面的例子演示了枚举值命名得过于通用的危害：
 
 ```cpp
-namespace Qt
-{
+namespace Qt {
     enum Corner { TopLeft, BottomRight, ... };
     enum CaseSensitivity { Insensitive, Sensitive };
     ...
@@ -546,8 +545,7 @@ str.indexOf("$(QTDIR)", Qt::Insensitive);
 在最后一行，`Insensitive`是什么意思？命名枚举类型的一个准则是在枚举值中至少重复此枚举类型名中的一个元素：
 
 ```cpp
-namespace Qt
-{
+namespace Qt {
     enum Corner { TopLeftCorner, BottomRightCorner, ... };
     enum CaseSensitivity { CaseInsensitive, CaseSensitive };
     ...
@@ -676,8 +674,7 @@ str.replace("%USER%", user, Qt::CaseInsensitive); // Qt 4
 为了展示上文各种准则的实际应用。我们来研究一下`Qt 3`中`QProgressBar`的`API`，并与`Qt 4`中对应的`API`作比较。在`Qt 3`中：
 
 ```cpp
-class QProgressBar : public QWidget
-{
+class QProgressBar : public QWidget {
     ...
 public:
     int totalSteps() const;
@@ -732,8 +729,7 @@ void setAlignment(Qt::Alignment alignment);
 下面是改善后的`QProgressBar API`:
 
 ```cpp
-class QProgressBar : public QWidget
-{
+class QProgressBar : public QWidget {
     ...
 public:
     void setMinimum(int minimum);

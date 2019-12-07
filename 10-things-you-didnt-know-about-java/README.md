@@ -1,4 +1,4 @@
-原文链接： [10 Things You Didn’t Know About Java](http://blog.jooq.org/2014/11/03/10-things-you-didnt-know-about-java/)  
+原文链接： [10 Things You Didn’t Know About Java](http://blog.jooq.org/2014/11/03/10-things-you-didnt-know-about-java/)，2014-11-03  
 译文发在[ImportNew](http://www.importnew.com/)： <http://www.importnew.com/13859.html>，2014-12-21
 
 关于`Java`你可能不知道的10件事
@@ -10,16 +10,16 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [1. 其实没有受检异常（`checked exception`）](#1-%E5%85%B6%E5%AE%9E%E6%B2%A1%E6%9C%89%E5%8F%97%E6%A3%80%E5%BC%82%E5%B8%B8%EF%BC%88checked-exception%EF%BC%89)
+- [1. 其实没有受检异常（`checked exception`）](#1-%E5%85%B6%E5%AE%9E%E6%B2%A1%E6%9C%89%E5%8F%97%E6%A3%80%E5%BC%82%E5%B8%B8checked-exception)
 - [2. 可以有只是返回类型不同的重载方法](#2-%E5%8F%AF%E4%BB%A5%E6%9C%89%E5%8F%AA%E6%98%AF%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8D%E8%BD%BD%E6%96%B9%E6%B3%95)
-- [3. 所有这些写法都是二维数组！](#3-%E6%89%80%E6%9C%89%E8%BF%99%E4%BA%9B%E5%86%99%E6%B3%95%E9%83%BD%E6%98%AF%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%EF%BC%81)
+- [3. 所有这些写法都是二维数组！](#3-%E6%89%80%E6%9C%89%E8%BF%99%E4%BA%9B%E5%86%99%E6%B3%95%E9%83%BD%E6%98%AF%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84)
 - [4. 你没有掌握条件表达式](#4-%E4%BD%A0%E6%B2%A1%E6%9C%89%E6%8E%8C%E6%8F%A1%E6%9D%A1%E4%BB%B6%E8%A1%A8%E8%BE%BE%E5%BC%8F)
 - [5. 你没有掌握复合赋值运算符](#5-%E4%BD%A0%E6%B2%A1%E6%9C%89%E6%8E%8C%E6%8F%A1%E5%A4%8D%E5%90%88%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6)
 - [6. 随机`Integer`](#6-%E9%9A%8F%E6%9C%BAinteger)
 - [7. `GOTO`](#7-goto)
 - [8. `Java`是有类型别名的](#8-java%E6%98%AF%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%E7%9A%84)
 - [9. 有些类型的关系是不确定的](#9-%E6%9C%89%E4%BA%9B%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%85%B3%E7%B3%BB%E6%98%AF%E4%B8%8D%E7%A1%AE%E5%AE%9A%E7%9A%84)
-- [10. 类型交集（`Type intersections`）](#10-%E7%B1%BB%E5%9E%8B%E4%BA%A4%E9%9B%86%EF%BC%88type-intersections%EF%BC%89)
+- [10. 类型交集（`Type intersections`）](#10-%E7%B1%BB%E5%9E%8B%E4%BA%A4%E9%9B%86type-intersections)
 - [结论](#%E7%BB%93%E8%AE%BA)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -87,7 +87,7 @@ class Test {
 abstract class Parent<T> {
     abstract T x();
 }
- 
+
 class Child extends Parent<String> {
     @Override
     String x() { return "abc"; }
@@ -172,7 +172,7 @@ class Test {
 
 或换句话说：
 
-> 在我4周休假前的最后一个提交里，我写了这样的代码，然后。。。  
+> 我要去休一个月的假了，在最后一个提交里撸上了这样的代码，然后。。。  
 ![for-you-my-dear-coworkers](for-you-my-dear-coworkers.jpg)  
 【**_译注_**：然后，亲爱的同事你，就有得火救啦，哼，哼哼，哦哈哈哈哈～】
 
@@ -322,7 +322,7 @@ for (int i = 0; i < 10; i++) {
 和用反射覆盖`JDK`的`Integer`缓存，然后使用自动打包解包（`auto-boxing`/`auto-unboxing`）有关。
 同学们请勿模仿！或换句话说，想想会有这样的状况，再说一次：
 
-> 在我4周休假前的最后一个提交里，我写了这样的代码，然后。。。  
+> 我要去休一个月的假了，在最后一个提交里撸上了这样的代码，然后。。。  
 ![for-you-my-dear-coworkers](for-you-my-dear-coworkers.jpg)  
 【**_译注_**：然后，亲爱的同事你，就有得火救啦，哼，哼哼，哦哈哈哈哈～】
 
@@ -465,7 +465,7 @@ class Test {
 }
 ```
 
-一个很难的问题，[`Ross Tate `](http://www.cs.cornell.edu/~ross/)回答过。答案实际上是不确定的：
+一个很难的问题，[`Ross Tate`](http://www.cs.cornell.edu/~ross/)回答过。答案实际上是不确定的：
 
 **_`C`是`Type<? super C>`的子类吗？_**
 

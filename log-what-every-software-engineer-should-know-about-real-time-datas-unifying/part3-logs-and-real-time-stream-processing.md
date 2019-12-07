@@ -1,9 +1,15 @@
 第三部分：日志与实时流处理
 =================================
 
-1. [数据流图（`data flow graphs`）](#数据流图data-flow-graphs)
-1. [有状态的实时流处理](#有状态的实时流处理)
-1. [日志合并（`log compaction`）](#日志合并log-compaction)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+1. [数据流图（`data flow graphs`）](#%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BEdata-flow-graphs)
+1. [有状态的实时流处理](#%E6%9C%89%E7%8A%B6%E6%80%81%E7%9A%84%E5%AE%9E%E6%97%B6%E6%B5%81%E5%A4%84%E7%90%86)
+1. [日志合并（`log compaction`）](#%E6%97%A5%E5%BF%97%E5%90%88%E5%B9%B6log-compaction)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 到目前为止，我只讲述了系统之间拷贝数据的理想机制。但是在存储系统之间搬运字节不是所要讲述内容的全部。
 最终会发现，『日志』是流的另一种说法，
@@ -14,12 +20,13 @@
 如果你是上世纪90年代晚期或者21世纪初[数据库](http://cs.brown.edu/research/aurora/vldb03_journal.pdf) [文化](http://db.cs.berkeley.edu/papers/cidr03-tcq.pdf)或者成功了一半的[数据](http://www-03.ibm.com/software/products/us/en/infosphere-streams) [基础设施](http://en.wikipedia.org/wiki/StreamBase_Systems) [产品](http://en.wikipedia.org/wiki/Truviso)的爱好者，那么你就可能会把流处理与建创`SQL`引擎或者『箱子和箭头』（`boxes and arrows`）接口用于事件驱动的处理联系起来。
 
 如果你关注大量出现的开源数据库系统，你就可能把流处理和一些这领域的系统关联起来，
-比如[`Storm`](http://storm-project.net/)、[`Akka`](http://akka.io/)、[`S4`](http://incubator.apache.org/s4)和[`Samza`](http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying)。
+比如[`Storm`](http://storm-project.net/)、[`Akka`](http://akka.io/)、[`S4`](http://incubator.apache.org/s4)和`Samza`。
 但是大部分人会把这些系统看为异步消息处理系统，与支持群集的远程过程调用（`RPC`）层没什么差别
 （而事实上这一领域一些系统确实是如此）。
 
-这些观点都有一些局限性。流处理即与`SQL`无关，也不局限于实时流处理。
-还没有根本的原因，限制你不能使用多种不同的语言来表达计算，处理昨天的或者一个月之前的流数据。
+这些观点都有一些局限性。流处理既与`SQL`无关，也不局限于实时流处理。
+并没有什么不可克服的原因（`inherent reason`）导致我们不能做到：
+通过多种不同的语言来表达计算（`express the computation`），处理一天前或一个月之前的数据流。
 
 <img src="images/19202244_GPDx.jpg" width="250" hspace="10px" align="right" >
 
@@ -50,7 +57,7 @@
 
 由此看来，对于流处理我很容易得出不同观点：
 它处理的是包含时间概念的底层数据并且不需要静态的数据快照，
-所以可以以用户可控频率生产输出而不是等待数据集的『都』到达后再生产输出（**_【译注】_** 数据是会持续的，所以实际上不会有『都』达到的时间点）。
+所以可以以用户可控的频率来生产输出而不是等待数据集『都』到达后再生产输出（**_【译注】_** 数据是持续的，所以实际上不会有『都』达到的时间点）。
 从这个角度上讲，流处理是广义上的批处理，随着实时数据的流行，流处理会是很重要处理方式。
 
 那么，为什么流处理的传统观点大家之前会认为更合适呢？
@@ -58,9 +65,9 @@
 
 我觉得，是否缺少实时数据的收集决定了商用流处理系统的命运。
 当他们的客户还是用面向文件的每日批量处理完成`ETL`和数据集成时，
-建设流处理系统的公司专注于提供处理引擎来连接实时数据流，而结果是当时几乎没有人真地有实时数据流。
+建设流处理系统的公司专注于提供处理引擎来连接实时数据流，而结果是当时几乎没有人真的有实时数据流。
 其实我在`LinkedIn`工作的初期，有一家公司想把一个非常棒的流处理系统卖给我们，
-但是因为当时我们的所有数据都按小时收集在的文件里，
+但是因为当时我们的所有数据都在按小时收集的文件里，
 所以用上这个系统我们能做到的最好效果就是在每小时的最后把这些文件输入到流处理系统中。
 他们意识到这是个普遍问题。
 下面的这个异常案例实际上是证明上面规律：
@@ -78,7 +85,7 @@
 数据流图（`data flow graphs`）
 ------------------
 
-<img src="images/dag.png" width="250" hspace="10px" align="right" >
+<img src="images/dag.png" hspace="10px" align="right" >
 
 流处理最有趣的特点是它与流处理系统的内部组织无关，
 但是与之密切相关的是，流处理是怎么扩展了之前在数据集成讨论中提到的认识：输入数据（`data feed`）是什么。

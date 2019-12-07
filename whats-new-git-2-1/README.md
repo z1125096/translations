@@ -1,4 +1,4 @@
-原文链接： [What’s new in Git 2.1](http://blogs.atlassian.com/2014/08/whats-new-git-2-1/) - [Tim Pettersen](http://blogs.atlassian.com/author/tpettersen/)   
+原文链接： [What’s new in Git 2.1](http://blogs.atlassian.com/2014/08/whats-new-git-2-1/) - [Tim Pettersen](http://blogs.atlassian.com/author/tpettersen/)，2014-08-25   
 译文发在[博乐在线](http://www.jobbole.com/)： [http://blog.jobbole.com/76550/](http://blog.jobbole.com/76550/)，2014-09-08
 
 `Git` `2.1`有哪些新特性？
@@ -115,7 +115,7 @@ $ git replace --edit master
 $ git replace --edit master:jira-components/pom.xml
 ```
 
-应该这么做？基本上不会 :smile: 大部分情况应该用`git rebase`重写对象，这样会正确的重写提交的`SHA`，保证历史是健全的（`sane history`）。
+应该这么做？基本上不会 😄 大部分情况应该用`git rebase`重写对象，这样会正确的重写提交的`SHA`，保证历史是健全的（`sane history`）。
 
 > `git replace`会读取`--graft`选项，可以编辑父提交。
 
